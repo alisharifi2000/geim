@@ -24,4 +24,13 @@ public class rightController : MonoBehaviour
             carPosition.position = rightPos;
         }
     }
+
+    void OnCollisionEnter(Collision CollisionInfo)
+    {
+        if (CollisionInfo.collider.tag == "Tow_Block" || CollisionInfo.collider.name == "SWAT_Block")
+        {
+            Debug.Log(CollisionInfo.collider.name);
+            FindObjectOfType<GameManagerRight>().GameOver();
+        }
+    }
 }

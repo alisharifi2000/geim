@@ -12,6 +12,7 @@ public class leftController : MonoBehaviour
     public Vector3 rightPos = new Vector3(-1f, 0.5f, -9f);
     public Vector3 leftPos = new Vector3(-3f, 0.5f, -9f);
 
+
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +23,15 @@ public class leftController : MonoBehaviour
         else if (Input.GetKey("s"))
         {
             carPosition.position = leftPos;
+        }
+    }
+
+    void OnCollisionEnter(Collision CollisionInfo)
+    {
+        if (CollisionInfo.collider.tag == "Tow_Block" || CollisionInfo.collider.name == "SWAT_Block" )
+        {
+            Debug.Log(CollisionInfo.collider.name);
+            FindObjectOfType<GameManagerLeft>().GameOver();
         }
     }
 }
